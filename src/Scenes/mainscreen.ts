@@ -6,6 +6,7 @@ import { JBPoseDetection } from "../jbposedetection";
 import { JBTarget } from '../jbtarget';
 // import { isMobile } from '../utils';
 
+
 class MainScreen extends Phaser.Scene
 {
     camera : JBCamera = null;
@@ -76,6 +77,10 @@ class MainScreen extends Phaser.Scene
 
     jbPoseDetectionPromise : Promise<JBPoseDetection>;
     cameraPromise: Promise<JBCamera>;
+    textEntry : Phaser.GameObjects.Text;
+    button : Phaser.GameObjects.Text;
+
+
 
     create() {
         this.sound.add( "beep" );
@@ -121,12 +126,14 @@ class MainScreen extends Phaser.Scene
             //console.log(`scaleX ${this.scaleX} scaleY ${this.scaleY}`);
     
             this.add.image( width/2, height/2, 'webcam').setFlipX( true ).setScale( this.scaleX, this.scaleY );
-    
+            //this.add.text(15, 4, 'Move 1m away from the camera ', { font: '20px Courier', backgroundColor : '#303030' } );
+
+
             this.scorePoints = 0;
             this.scoreText = this.make.text({
                 x: 10,
-                y: 10,
-                text: `User: ${this.registry.get('userName')}, Score: ${this.scorePoints.toFixed(0)}`,
+                y: 20,
+                text: `User: ${this.registry.get('userName')} - Score: ${this.scorePoints.toFixed(0)}`,
                 style: {
                     color: '#e0e030',
                     font: '32px monospace',
@@ -149,8 +156,18 @@ class MainScreen extends Phaser.Scene
 
             //this.createTargets(3);
             this.startTime = this.time.now;
+
+
         });
+
+
+
+
+
+
     }
+
+
 
     randomRGBA() {
         let o = Math.round, r = Math.random, s = 255;
@@ -160,6 +177,9 @@ class MainScreen extends Phaser.Scene
     currentPoses : poseDetection.Pose = null;
 
     update( time : number, delta : number ) {
+
+
+
         if ( ( this.camera != null ) && ( this.canvas != null ) ) {
 
             //console.log(`mainScreen.update ${time} ${delta}`);
@@ -204,21 +224,36 @@ class MainScreen extends Phaser.Scene
                             if ( ( min >= 0 ) && ( min <  thresh ) ) {
                                 this.sound.play("beep");
                                 console.log(`Hit min ${min} minIndex ${minIndex} thresh ${thresh} target.scale ${this.targets[0].scale} target.width ${this.targets[0].width}`);
-                                target.tint = Phaser.Display.Color.GetColor(255, 140, 160);
+                                target.tint = Phaser.Display.Color.GetColor(this.getRandomInt(250), this.getRandomInt(250), this.getRandomInt(250));
                                 this.scorePoints = this.scorePoints + 10 * target.scale;
                                 console.log( `scorePoints: ${this.scorePoints} scale ${target.scale}` );
-                                this.scoreText.text = `Score: ${this.scorePoints.toFixed()}`;
+                                this.scoreText.text = `User: ${this.registry.get('userName')} - Score: ${this.scorePoints.toFixed()}`;
                                 target.disableTarget( 10 * target.scale );
                             }
                         }
                     }
-                    console.log("pose detection closure");
+                    // console.log("pose detection closure");
                     console.dir(this);
+
+                    // when reach the time the game finishes 
+                    console.log("time", dt/1000);
+                    if (dt/1000 > 10) {
+
+                   // if (dt/1000 > 100) {
+
+                        //this.add.text(10, 300, 'bigger than 100', { font: '100px Courier', backgroundColor : '#303030' } );
+                        //this.button = this.add.text( 500, 500, "Done", { font: '200px Courier', backgroundColor: '#D9E23D' } )
+                        //.setInteractive()
+                        //.on('pointerdown', () => this.nextScreen( ) );
+                        this.stopTargets();
+                        this.nextScreen();
+                
+                    }
 
                     this.canvas.refresh();
                     this.targets = this.targets.filter( (target : JBTarget, index : number, array: JBTarget[] ) => { return target.active } );
                     if ( this.targets.length === 0 ) {
-                        this.createTargets(3);
+                        this.createTargets(2);
                         this.startTargets();
                     }
                 });
@@ -230,6 +265,11 @@ class MainScreen extends Phaser.Scene
             //     this.startTargets();
             // }
         }
+
+
+    }
+    getRandomInt(max){
+        return Math.floor(Math.random() * max);
     }
 
     createTargets( numTargets : number ) {
@@ -262,6 +302,12 @@ class MainScreen extends Phaser.Scene
         let ty = vec.y;
 
         return { tx, ty };
+    }
+
+    nextScreen( ) {
+        this.registry.set( 'Points', this.scorePoints);
+        this.scene.start( 'FinalScreen' );
+
     }
 }
 

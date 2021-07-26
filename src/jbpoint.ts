@@ -36,7 +36,7 @@ class JBPoint extends Phaser.GameObjects.Sprite {
         console.log( `jbpoint: duration ${this.duration} ${this.duration}` );
 
         this.timer = this.scene.time.addEvent( {
-            delay: 1.0 * this.duration, 
+            delay: 5.0 * this.duration, 
             callback: () => {
                 console.log( `jpoint finished` );
             },

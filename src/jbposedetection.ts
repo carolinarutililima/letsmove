@@ -121,6 +121,7 @@ class JBPoseDetection {
                 }
             }
         }
+        console.log(min, minIndex);
         return { min, minIndex };
     }
 

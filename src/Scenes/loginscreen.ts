@@ -31,6 +31,10 @@ class LoginScreen extends Phaser.Scene{
         loop: -1
       });
 
+      this.add.text(300, 10, 'Lets Move Game', { font: '15px Courier', backgroundColor : '#D9E23D' } );
+
+      this.add.text(100, 30, 'Please move 1m away from the camera', { font: '25px Courier', backgroundColor : '#D9E23D' } );
+
       this.add.text(10, 200, 'Enter your name:', { font: '48px Courier', backgroundColor : '#303030' } );
 
       let bar = this.add.graphics();
@@ -59,6 +63,7 @@ class LoginScreen extends Phaser.Scene{
     nextScreen( ) {
       this.registry.set( 'userName', this.textEntry.text );
       this.scene.start( 'main_screen' );
+
     }
 }
 

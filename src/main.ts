@@ -9,6 +9,8 @@ import * as Phaser from "phaser";
 import { PreLoader } from './Scenes/preloader';
 import { Boot } from './Scenes/boot';
 import { MainScreen } from './Scenes/mainscreen';
+import { FinalScreen } from './Scenes/finalscreen';
+
 //import axios from "axios";
 
 const config = {
@@ -17,7 +19,7 @@ const config = {
   width: 800,
   height: 600,
   backgroundColor : 'rgba(71, 15, 15, 1.0)',
-  scene: [Boot, PreLoader, LoginScreen, MainScreen ],
+  scene: [Boot, PreLoader, LoginScreen, MainScreen, FinalScreen ],
   scale : {
     mode: Phaser.Scale.FIT,
     autocenter: Phaser.Scale.CENTER_BOTH,

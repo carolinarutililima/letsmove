@@ -56,6 +56,12 @@ class JBTarget extends Phaser.GameObjects.Sprite {
 
         this.setActive( true );
         this.setVisible( true );
+        //getRandomInt(250)
+        this.tint = Phaser.Display.Color.GetColor(this.getRandomInt(250), this.getRandomInt(250), this.getRandomInt(250));
+    }
+
+    getRandomInt(max){
+        return Math.floor(Math.random() * max);
     }
 
     disableTarget( score: number ) {
@@ -69,6 +75,9 @@ class JBTarget extends Phaser.GameObjects.Sprite {
         }
         //this.destroy();
     }
+
+
+
 
     // updateTarget( ) {
     //     console.log("Update target");
