@@ -21,7 +21,7 @@ class LoginScreen extends Phaser.Scene{
     textEntry : Phaser.GameObjects.Text;
 
     create() {
-      const logo = this.add.image(700, 150, "logo");   
+      const logo = this.add.image(900, 400, "logo");   
       this.tweens.add({
         targets: logo,
         y: 500,
@@ -30,10 +30,28 @@ class LoginScreen extends Phaser.Scene{
         yoyo: true,
         loop: -1
       });
+    
+    // create() {
+    //   let tWidth = window.innerWidth;
+    //   let tHeight = window.innerHeight;
 
-      this.add.text(300, 10, 'Lets Move Game', { font: '15px Courier', backgroundColor : '#D9E23D' } );
+    //   const logo = this.add.image(0, 0, "logo");   
+    //   logo.setOrigin(0.5,0);
 
-      this.add.text(100, 30, 'Please move 1m away from the camera', { font: '25px Courier', backgroundColor : '#D9E23D' } );
+    //   this.tweens.add({
+    //     targets: logo,
+    //     x: 1.0 * tWidth,
+    //     duration: 2000,
+    //     ease: "Power2",
+    //     yoyo: true,
+    //     loop: -1
+    //   });
+
+      this.add.text(500, 5, 'Welcome to Lets Move Game', { font: '30px Courier', backgroundColor : '#D9E23D' } );
+
+     // this.add.text(500, 40, 'Please move 1m away from the camera', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+
+     // this.add.text(100, 70, 'Hit the starts to get points, and avoid the bomb to loose them', { font: '35px Courier', backgroundColor : '#D9E23D' } );
 
       this.add.text(10, 200, 'Enter your name:', { font: '48px Courier', backgroundColor : '#303030' } );
 
@@ -55,14 +73,21 @@ class LoginScreen extends Phaser.Scene{
           }
       });
   
-      this.button = this.add.text( 500, 320, "Done", { font: '48px Courier', backgroundColor: '#D9E23D' } )
+      this.button = this.add.text( 500, 320, "Done", { font: '48px Courier', backgroundColor: '#D9E23D' } 
+
+      
+      )
         .setInteractive()
         .on('pointerdown', () => this.nextScreen( ) );
     }
 
     nextScreen( ) {
       this.registry.set( 'userName', this.textEntry.text );
-      this.scene.start( 'main_screen' );
+      //this.scene.start( 'trial_screen' );
+      //this.scene.start( 'main_screen' );
+      this.scene.start( 'instru-screen' );
+
+      
 
     }
 }

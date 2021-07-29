@@ -3,7 +3,7 @@ import * as Phaser from 'phaser';
 class FinalScreen extends Phaser.Scene{
   constructor() {
     super({
-        key: 'FinalScreen'
+        key: 'final_screen'
     })
 };
 
@@ -15,6 +15,7 @@ class FinalScreen extends Phaser.Scene{
  };
 
    preload() {
+     console.log("foi aqui")
      this.load.image("logo", 'assets/images/ntnuerc-logo-1.png');
    }
 
@@ -23,7 +24,7 @@ class FinalScreen extends Phaser.Scene{
    scoreText : Phaser.GameObjects.Text = null;
 
    create() {
-     const logo = this.add.image(700, 150, "logo");   
+     const logo = this.add.image(700, 800, "logo");   
     this.tweens.add({
       targets: logo,
       y: 500,
@@ -34,14 +35,14 @@ class FinalScreen extends Phaser.Scene{
     });
   
   
-    this.add.text(300, 10, 'Final Score', { font: '30px Courier', backgroundColor : '#D9E23D' } );
+    this.add.text(500, 10, 'Final Score', { font: '30px Courier', backgroundColor : '#D9E23D' } );
     this.scoreText = this.make.text({
-      x: 150,
+      x: 400,
       y: 200,
       text: `User: ${this.registry.get('userName')} - Score: ${this.registry.get('Points').toFixed()}`,
       style: {
           color: '#e0e030',
-          font: '32px monospace',
+          font: '50px monospace',
       }
   });
 

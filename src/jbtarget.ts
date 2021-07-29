@@ -13,15 +13,22 @@ class JBTarget extends Phaser.GameObjects.Sprite {
 
     duration : number;
 
-    constructor( scene : Phaser.Scene, jbPoseDetection : JBPoseDetection ) {
-        super( scene, -1000, -1000, 'target' );
+    oScale : number;
 
+    constructor( scene : Phaser.Scene, private points: number, jbPoseDetection : JBPoseDetection, img: string  = 'target' ) {
+        super( scene, -1000, -1000, img );
+        
         this.mainScreen = scene as MainScreen;
         
         this.jbPoseDetection = jbPoseDetection;
 
-        //console.log(`this.target ${this.target}`);
+        this.active = false;
+        this.visible = false;
 
+        this.oScale = (window.innerWidth * 0.1) / this.width;
+
+        this.scale = this.oScale; 
+        //console.log(`this.target ${this.target}`);
     }
 
     start( duration : number ) {
@@ -30,10 +37,9 @@ class JBTarget extends Phaser.GameObjects.Sprite {
         this.tween = this.mainScreen.tweens.add( { 
             start : 0,
             targets: this,
-            scaleX: 0.3,
-            scaleY: 0.3,
+            scale: 0.3 * this.oScale,
             yoyo: false,
-            repeat: 1,
+            repeat: 0,
             duration: this.duration,
             ease: 'Sine.easeInOut',
             onComplete: function () {
@@ -44,7 +50,7 @@ class JBTarget extends Phaser.GameObjects.Sprite {
             onCompleteScope: this,
         } );
 
-        console.log( `jbtarget: duration ${this.duration} ${this.duration}` );
+        console.log( `jbtarget: duration x=${this.x},y=${this.y}, duration=${this.duration}` );
 
         // this.timer = this.scene.time.addEvent( {
         //     delay: this.duration, 
@@ -56,28 +62,36 @@ class JBTarget extends Phaser.GameObjects.Sprite {
 
         this.setActive( true );
         this.setVisible( true );
-        //getRandomInt(250)
-        this.tint = Phaser.Display.Color.GetColor(this.getRandomInt(250), this.getRandomInt(250), this.getRandomInt(250));
+
+        this.scene.add.existing( this );
     }
 
-    getRandomInt(max){
-        return Math.floor(Math.random() * max);
-    }
+    hit : JBTargetHit;
 
-    disableTarget( score: number ) {
+    disableTarget( score? : number ) {
+        if ( score === undefined ) {
+            score = this.getPoints();
+        }
+
         this.setActive( false );
         this.setVisible( false );
 
         console.log( `Disable target ${this.scene}` );
         if ( score !== 0 ) {
-            let hit = new JBTargetHit( this.scene );
-            hit.start( this.x, this.y, score );
+            this.hit = new JBTargetHit( this.scene );
+            this.hit.start( this.x, this.y, score );
         }
-        //this.destroy();
     }
 
+    update( time: number, delta: number ) {
+        if ( ( this.hit !== null ) && ( this.hit !== undefined ) && ( this.hit.visible ) ) {
+            this.hit.update( time, delta );
+        } 
+    }
 
-
+    getPoints( ) {
+        return this.points * this.scale / this.oScale;
+    }
 
     // updateTarget( ) {
     //     console.log("Update target");
@@ -118,9 +132,9 @@ console.log("registering gameobjectfactory");
 
 Phaser.GameObjects.GameObjectFactory.register(
 	'jbtarget',
-	function (this: Phaser.GameObjects.GameObjectFactory, jbPoseDetection : JBPoseDetection ) {
+	function (this: Phaser.GameObjects.GameObjectFactory, points: number, jbPoseDetection : JBPoseDetection ) {
         console.log("gameobjectfactory called");
-		const jbtarget = new JBTarget( this.scene, jbPoseDetection );
+		const jbtarget = new JBTarget( this.scene, points, jbPoseDetection );
 
         this.displayList.add( jbtarget );
         this.updateList.add( jbtarget );
@@ -130,4 +144,3 @@ Phaser.GameObjects.GameObjectFactory.register(
 )
 
 export { JBTarget };
-

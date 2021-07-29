@@ -3,7 +3,7 @@ import { isMobile } from "./utils";
 
 type JBCameraParam = {
     'targetFPS' : number;
-    'sizeOption' : string;
+    'sizeOption' : { width: number, height: number };
 }
 
 class JBCamera {
@@ -27,11 +27,6 @@ class JBCamera {
         ctx.fillRect( x, y,width, height );
     }
 
-    // randomRGBA() {
-    //     let o = Math.round, r = Math.random, s = 255;
-    //     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
-    // }
-
     static async factory( videoId : string, cameraParam : JBCameraParam ) {
         if ( ( ! navigator.mediaDevices ) || ( ! navigator.mediaDevices.getUserMedia ) ) {
             throw new Error("No video camera available");
@@ -42,8 +37,8 @@ class JBCamera {
             'audio' : false,
             'video' : {
                 facingMode : 'user',
-                width: isMobile() ? 0 : 360,
-                height: isMobile() ? 0 : 270,
+                width: { max: sizeOption.width }, 
+                height: { max: sizeOption.height },
                 frameRate: {
                     ideal: targetFPS
                 }

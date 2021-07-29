@@ -51,6 +51,15 @@ class PreLoader extends Phaser.Scene{
 //      this.load.image("logo", 'assets/images/ntnuerc-logo-1.png'); 
       this.load.image( "target", 'assets/images/target.png' );
 
+      this.load.image("logo", 'assets/images/ntnuerc-logo-1.png');
+      this.load.audio("beep", 'assets/audio/beep_ping.wav');
+
+      this.load.audio("bg1", 'assets/audio/background1.wav');
+
+      this.load.audio("bg2", 'assets/audio/background2.wav');
+
+      this.load.audio("bg3", 'assets/audio/background3.wav');
+
       var width = this.cameras.main.width;
       var height = this.cameras.main.height;
       this.loadingText = this.make.text({
@@ -89,7 +98,8 @@ class PreLoader extends Phaser.Scene{
     }
 
     create() {
-      const logo = this.add.image(400, 150, "logo");   
+     // const logo = this.add.image(400, 150, "logo");   
+      const logo = this.add.image(0, 0, "logo"); 
       const text = this.add.text(20, 450, "Let's Move");
       this.tweens.add({
         targets: logo,
