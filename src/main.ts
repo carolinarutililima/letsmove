@@ -10,20 +10,28 @@ import { PreLoader } from './Scenes/preloader';
 import { Boot } from './Scenes/boot';
 import { MainScreen } from './Scenes/mainscreen';
 import { FinalScreen } from './Scenes/finalscreen';
+import { TrialScreen } from './Scenes/trialscreen';
+import {InstruScreen} from './Scenes/instructionscreen';
 
-//import axios from "axios";
+import { isMobile } from './utils';
+
+// let vw = isMobile() ? window.innerHeight : window.innerWidth;
+// let vh = isMobile() ? window.innerHeight : window.innerWidth;
+
+let vw = window.innerWidth;
+let vh = window.innerHeight;
 
 const config = {
   type: Phaser.AUTO,
   parent: "NTNU ERC Let's Move",
-  width: 800,
-  height: 600,
+  width: vw,
+  height: vh,
   backgroundColor : 'rgba(71, 15, 15, 1.0)',
-  scene: [Boot, PreLoader, LoginScreen, MainScreen, FinalScreen ],
+  scene: [Boot, PreLoader, LoginScreen, MainScreen, FinalScreen, TrialScreen, InstruScreen],
   scale : {
     mode: Phaser.Scale.FIT,
     autocenter: Phaser.Scale.CENTER_BOTH,
-  }
+  },
 };
 
 
