@@ -88,8 +88,8 @@ class InstruScreen extends Phaser.Scene{
 }
 
   nextScreen( ) {
-    //this.scene.start( 'trial_screen' );
-    this.scene.start( 'main_screen' );
+    this.scene.start( 'trial_screen' );
+    //this.scene.start( 'main_screen' );
   }
 }
 

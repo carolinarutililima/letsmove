@@ -287,7 +287,7 @@ class MainScreen extends Phaser.Scene
                         console.dir(this);
 
                         console.log("time", dt/1000);
-                        if (dt/1000 > 10) {
+                        if (dt/1000 > 200) {
                             dt = 0;
                            this.nextScreen();
                    
