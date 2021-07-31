@@ -35,9 +35,9 @@ class FinalScreen extends Phaser.Scene{
     });
   
   
-    this.add.text(500, 10, 'Final Score', { font: '30px Courier', backgroundColor : '#D9E23D' } );
+    this.add.text(700, 10, 'Final Score', { font: '30px Courier', backgroundColor : '#D9E23D' } );
     this.scoreText = this.make.text({
-      x: 400,
+      x: 350,
       y: 200,
       text: `User: ${this.registry.get('userName')} - Score: ${this.registry.get('Points').toFixed()}`,
       style: {
