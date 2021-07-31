@@ -287,7 +287,7 @@ class TrialScreen extends Phaser.Scene
 
                         console.log("time", dt/1000);
                         
-                        if (dt/1000 > 10) {
+                        if (dt/1000 > 20) {
                             console.log("time bigger than 10");
                             this.canvas.destroy();
                             dt = 0;
@@ -365,7 +365,8 @@ class TrialScreen extends Phaser.Scene
         //this.cleanUpTargets(); 
         //this.trialStartTime = 0;
         console.log("foi p main screen")
-        this.scene.start( 'main_screen' );
+        //this.scene.start( 'main_screen' );
+        this.scene.start( 'tomain-screen' );
   
     }
  

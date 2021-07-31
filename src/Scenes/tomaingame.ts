@@ -1,14 +1,14 @@
 import * as Phaser from 'phaser';
 
-class InstruScreen extends Phaser.Scene{
+class ToMainScreen extends Phaser.Scene{
     constructor() {
         super({
-            key: 'instru-screen'
+            key: 'tomain-screen'
         })
     };
     
     init() {
-       console.log("InstruScreen.init");
+       console.log("ToMainScreen.init");
        
     };
 
@@ -50,20 +50,15 @@ class InstruScreen extends Phaser.Scene{
     //     loop: -1
     //   });
 
-      //this.add.text(700, 5, 'Lets Move Game', { font: '20px Courier', backgroundColor : '#D9E23D' } );
 
-      this.add.text(300, 70, '1) Please move 1m away from the camera', { font: '35px Courier', color: '#e0e030' } );
 
-      this.add.text(300, 130, '2) Hit the stars to get points', { font: '35px Courier', color: '#e0e030' } );
+      this.add.text(300, 190, 'Prepare yourself, and go for the game.', { font: '35px Courier', color: '#e0e030' } );
 
-      this.add.text(300, 190, '3) Avoid the bombs not to lose them', { font: '35px Courier', color: '#e0e030' } );
-
-      this.add.text(200, 240, '4) 20s Trial Section is launched before the main game', { font: '35px Courier', color: '#e0e030' } );
 
       this.scoreText = this.make.text({
         x: 550,
         y: 10,
-        text: `Welcome ${this.registry.get('userName')}`,
+        text: `Hey ${this.registry.get('userName')}`,
         style: {
             color: '#e0e030',
             font: '50px monospace',
@@ -79,7 +74,7 @@ class InstruScreen extends Phaser.Scene{
       } 
     });
 
-    this.button = this.add.text( 550, 320, "Start Trial Game", { font: '48px Courier', backgroundColor: '#D9E23D' } 
+    this.button = this.add.text( 550, 320, "Start Game", { font: '48px Courier', backgroundColor: '#D9E23D' } 
 
     )
     .setInteractive()
@@ -88,9 +83,9 @@ class InstruScreen extends Phaser.Scene{
 }
 
   nextScreen( ) {
-    this.scene.start( 'trial_screen' );
+    this.scene.start( 'main_screen' );
     //this.scene.start( 'main_screen' );
   }
 }
 
-export { InstruScreen };
+export { ToMainScreen };

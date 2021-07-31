@@ -12,6 +12,8 @@ import { MainScreen } from './Scenes/mainscreen';
 import { FinalScreen } from './Scenes/finalscreen';
 import { TrialScreen } from './Scenes/trialscreen';
 import {InstruScreen} from './Scenes/instructionscreen';
+import {ToMainScreen} from './Scenes/tomaingame';
+
 
 import { isMobile } from './utils';
 
@@ -27,7 +29,7 @@ const config = {
   width: vw,
   height: vh,
   backgroundColor : 'rgba(71, 15, 15, 1.0)',
-  scene: [Boot, PreLoader, LoginScreen, MainScreen, FinalScreen, TrialScreen, InstruScreen],
+  scene: [Boot, PreLoader, LoginScreen, MainScreen, FinalScreen, TrialScreen, InstruScreen, ToMainScreen],
   scale : {
     mode: Phaser.Scale.FIT,
     autocenter: Phaser.Scale.CENTER_BOTH,
