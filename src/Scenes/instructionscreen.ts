@@ -54,7 +54,7 @@ class InstruScreen extends Phaser.Scene{
 
       this.add.text(300, 70, '1) Please move 1m away from the camera', { font: '35px Courier', backgroundColor : '#D9E23D' } );
 
-      this.add.text(60, 130, '2) Hit the starts to get points, and avoid the bomb to loose them', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+      this.add.text(60, 130, '2) Hit the starts to get points', { font: '35px Courier', backgroundColor : '#D9E23D' } );
 
       this.add.text(300, 190, '3) Avoid the bomb to not loose them', { font: '35px Courier', backgroundColor : '#D9E23D' } );
 

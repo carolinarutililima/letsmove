@@ -100,7 +100,7 @@ class PreLoader extends Phaser.Scene{
     create() {
      // const logo = this.add.image(400, 150, "logo");   
       const logo = this.add.image(0, 0, "logo"); 
-      const text = this.add.text(20, 450, "Let's Move");
+      const text = this.add.text(20, 450, "Let's Move Game");
       this.tweens.add({
         targets: logo,
         y: 300,
