@@ -52,13 +52,13 @@ class InstruScreen extends Phaser.Scene{
 
       //this.add.text(700, 5, 'Lets Move Game', { font: '20px Courier', backgroundColor : '#D9E23D' } );
 
-      this.add.text(300, 70, '1) Please move 1m away from the camera', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+      this.add.text(300, 70, '1) Please move 1m away from the camera', { font: '35px Courier', color: '#e0e030' } );
 
-      this.add.text(60, 130, '2) Hit the starts to get points', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+      this.add.text(300, 130, '2) Hit the stars to get points', { font: '35px Courier', color: '#e0e030' } );
 
-      this.add.text(300, 190, '3) Avoid the bomb to not loose them', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+      this.add.text(300, 190, '3) Avoid the bombs not to lose them', { font: '35px Courier', color: '#e0e030' } );
 
-      this.add.text(200, 240, '4) 10s Trial Section is lauched before the main game', { font: '35px Courier', backgroundColor : '#D9E23D' } );
+      this.add.text(200, 240, '4) 10s Trial Section is lauched before the main game', { font: '35px Courier', color: '#e0e030' } );
 
       this.scoreText = this.make.text({
         x: 550,
